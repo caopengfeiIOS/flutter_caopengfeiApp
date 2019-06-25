@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class minePage extends StatefulWidget {
   @override
   _minePageState createState() => _minePageState();

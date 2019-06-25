@@ -1,6 +1,6 @@
 class Config {
 
-
+  static const serviceUrl= 'http://v.jspang.com:8088/baixing/';
   static const base_url = 'https://api.github.com/authorizations';
   static const more_Url = 'http://192.168.2.5:11000';
   static const connectTimeout = 15000;

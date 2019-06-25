@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class webView extends StatelessWidget {
+  final String url;
+  webView({Key key,this.url}):super(key:key);
+
   @override
   Widget build(BuildContext context) {
     List<Widget> titleContent = [];
@@ -9,7 +12,7 @@ class webView extends StatelessWidget {
     style: TextStyle(color: Colors.white),
     ));
     titleContent.add(new Container(width: 50,));
-    return new WebviewScaffold(url: "https://www.baidu.com",
+    return new WebviewScaffold(url: url,
 // 登录的URL
       appBar: new AppBar(
         title: new Row(

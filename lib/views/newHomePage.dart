@@ -6,6 +6,7 @@ import 'package:android_intent/android_intent.dart';
 import 'package:flutter_app/views/newApphome.dart';
 import 'package:flutter_app/views/newAppOrder.dart';
 import 'package:flutter_app/views/newAppMine.dart';
+import 'package:flutter_app/views/category_page.dart';
 class appHomePage extends StatefulWidget {
   @override
   _appHomePageState createState() => _appHomePageState();
@@ -15,7 +16,7 @@ class _appHomePageState extends State<appHomePage>with SingleTickerProviderState
   TabController controller;
   @override
   void initState(){
-    controller = new TabController(length: 3, vsync: this);
+    controller = new TabController(length: 4, vsync: this);
   }
   /// 不退出
   Future<bool> _dialogExitApp(BuildContext context) async {
@@ -52,6 +53,7 @@ class _appHomePageState extends State<appHomePage>with SingleTickerProviderState
               <Widget>[
                 Tab(icon: Icon(Icons.message), text: '首页',),
                 Tab(icon: Icon(Icons.error), text: '消息',),
+                Tab(icon: Icon(Icons.store),text: '分类',),
                 Tab(icon: Icon(Icons.home), text: '我的',),
 
               ]
@@ -60,8 +62,9 @@ class _appHomePageState extends State<appHomePage>with SingleTickerProviderState
         body: new TabBarView(
             controller: controller,
             children: <Widget>[
-              new newAppHome(),
               new newAppOrder(),
+              new newAppHome(),
+              new category(),
               new newAppMine(),
 
             ]

@@ -50,6 +50,10 @@ dependencies:
   android_intent: ^0.3.0
   scoped_model: ^0.3.0
   oktoast: ^2.1.7
+  flutter_swiper: ^1.1.4
+  flutter_screenutil: ^0.5.2
+  fluro: ^1.4.0
+  flutter_html: ^0.9.6
 
   flutter_custom_bottom_tab_bar:
       git: https://github.com/LiuC520/flutter_custom_bottom_tab_bar.git

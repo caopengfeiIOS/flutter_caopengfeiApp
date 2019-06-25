@@ -16,6 +16,9 @@ import 'package:flutter_app/components/homeItem.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:flutter_easyrefresh/material_footer.dart';
 import 'package:flutter_app/uniti/event_utils.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 class newAppHome extends StatefulWidget {
   @override
   _newAppHomeState createState() => _newAppHomeState();

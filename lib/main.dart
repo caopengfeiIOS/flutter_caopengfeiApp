@@ -16,6 +16,7 @@ import 'package:flutter_app/Scoped_model/CountModel.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_app/Localizations/LocalizationsTest.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:fluro/fluro.dart';
 void main() => runApp(MyApp());
 
 //class MyApp extends StatelessWidget {

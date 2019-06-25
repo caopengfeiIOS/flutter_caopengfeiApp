@@ -85,7 +85,7 @@ class _TutorialHomeState extends State<TutorialHome> {
               }else if (index ==7){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>(new statePage())));
               }else if (index ==8){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>(new webView())));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>(new webView(url:'https://www.baidu.com'))));
 
               }else if (index ==9){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>(new localizaPage())));

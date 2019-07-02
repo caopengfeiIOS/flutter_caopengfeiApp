@@ -17,6 +17,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_app/Localizations/LocalizationsTest.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flustars/flustars.dart';
+import 'package:flutter_app/views/SplashPage.dart';
 void main() => runApp(MyApp());
 
 //class MyApp extends StatelessWidget {
@@ -54,14 +56,24 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
+    _initAsync();
     /// 初始化一个新的Localization Delegate，有了它，当用户选择一种新的工作语言时，可以强制初始化一个新的Translations
     _localeOverrideDelegate = new SpecificLocalizationDelegate(null);
 
     /// 保存这个方法的指针，当用户改变语言时，我们可以调用applic.onLocaleChanged(new Locale('en',''));，通过SetState()我们可以强制App整个刷新
     applic.onLocaleChanged = onLocaleChange;
   }
+  _initAsync() async {
+    /// App启动时读取Sp数据，需要异步等待Sp初始化完成。
+    await SpUtil.getInstance();
 
+    /// 同步使用Sp。
+//    SpUtil.remove("username");
+//    String defName = SpUtil.getString("username", defValue: "sky");
+//    SpUtil.putString("username", "sky24");
+//    String name = SpUtil.getString("username");
+//    print("MyApp defName: $defName, name: $name");
+  }
   /// 改变语言时的应用刷新核心，每次选择一种新的语言时，都会创造一个新的SpecificLocalizationDelegate实例，强制Translations类刷新。
   onLocaleChange(Locale locale) {
     setState(() {
@@ -84,7 +96,10 @@ class _MyAppState extends State<MyApp> {
                 primaryColor: Colors.lightBlue[800],
                 accentColor: Colors.cyan[600],
               ),
-              home: new MyHomePage(),
+              routes: {
+                'route_main' : (context) => new MyHomePage(),
+              },
+              home: new SplashPage(),
               localizationsDelegates: [
                 _localeOverrideDelegate, // 注册一个新的delegate
                 const TranslationsDelegate(),

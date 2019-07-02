@@ -30,6 +30,7 @@ class _savePageState extends State<savePage> {
       showToast("请输入内容");
     }else{
       await LocalStorage.save(Config.SaVE_TEST, text);
+      showToast('保存成功');
     }
 
   }

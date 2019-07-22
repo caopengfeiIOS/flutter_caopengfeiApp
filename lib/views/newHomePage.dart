@@ -64,7 +64,7 @@ class _appHomePageState extends State<appHomePage>with SingleTickerProviderState
             children: <Widget>[
               new newAppOrder(),
               new newAppHome(),
-              new category(),
+              new CategoryPage(),
               new newAppMine(),
 
             ]

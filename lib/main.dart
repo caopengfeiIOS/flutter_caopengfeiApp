@@ -19,26 +19,20 @@ import 'package:oktoast/oktoast.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_app/views/SplashPage.dart';
-void main() => runApp(MyApp());
+import 'package:flutter_app/provide/child_category.dart';
+import 'package:provide/provide.dart';
+import 'package:flutter_app/provide/category_goods_list.dart';
+void main(){
+  var childCategory= ChildCategory();
+  var categoryGoodsListProvide= CategoryGoodsListProvide();
+  var providers  =Providers();
+  providers
+    ..provide(Provider<ChildCategory>.value(childCategory))
+      ..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide)
+    );
+  runApp(ProviderNode(child:MyApp(),providers:providers));
+}
 
-//class MyApp extends StatelessWidget {
-//  // This widget is the root of your application.
-//
-//
-//  @override
-//  Widget build(BuildContext context) {
-////    final wordPair = new WordPair.random();
-//    return MaterialApp(
-//      title: 'Welcome to Flutter',
-//      theme: new ThemeData(
-//        brightness: Brightness.light,
-//        primaryColor: Colors.lightBlue[800],
-//        accentColor: Colors.cyan[600],
-//      ),
-//      home: new MyHomePage(),
-//    );
-//  }
-//}
 
 class MyApp extends StatefulWidget {
 
@@ -47,10 +41,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   CountModel countModel = CountModel();
-
-
   SpecificLocalizationDelegate _localeOverrideDelegate;
 
   @override
@@ -119,126 +110,25 @@ class _MyAppState extends State<MyApp> {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
-
-
-
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
 
-
-
-
   int _counter = 0;
-  final _suggestions = <WordPair>[];
-  final _saved = new Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
-  Widget _buildSuggestions() {
-    return new ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          print(i);
-          if (i.isOdd) return new Divider();
-          final index = i ~/ 2;
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[index]);
-        }
-    );
-  }
-Widget _buildRow (WordPair pair){
-    final alreadySaved = _saved.contains(pair);
-  return new ListTile(
-    title: new Text(
-     pair.asPascalCase,
-      style: _biggerFont,
-  ),
-    trailing: new Icon(
-      alreadySaved?Icons.favorite : Icons.favorite_border,
-      color: alreadySaved? Colors.red : null,
-    ),
-    onTap: (){
-      setState(() {
-        if(alreadySaved){
-          _saved.remove(pair);
-        }else{
-          _saved.add(pair);
-        }
-      });
-    },
-  );
-}
-void _pushSaved(){
-  Navigator.of(context).push(
-    new MaterialPageRoute(
-      builder: (context) {
-        final tiles = _saved.map(
-              (pair) {
-            return new ListTile(
-              title: new Text(
-                pair.asPascalCase,
-                style: _biggerFont,
-              ),
-            );
-          },
-        );
-        final divided = ListTile
-            .divideTiles(
-          context: context,
-          tiles: tiles,
-        )
-            .toList();
-
-        return new Scaffold(
-          appBar: new AppBar(
-            title: new Text('Saved Suggestions'),
-          ),
-          body: new ListView(children: divided),
-        );
-      },
-    ),
-  );
-}
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
     });
   }
 
-    TabController controller;
+  TabController controller;
   @override
   void initState(){
     controller = new TabController(length: 4, vsync: this);
   }
-
-
   @override
   Widget build(BuildContext context) {
-//    final wordPair = new WordPair.random();
-//    return new Text(wordPair.asPascalCase);
-
-//    return StoreProvider<CPFState>(store: store,
 
         return new Scaffold(
 
